@@ -10,7 +10,7 @@ RSpec.describe CalculationsController do
 
   describe "POST create" do
     it "renders index" do
-      post :create
+      post :create, params: {}
       expect(response).to render_template("index")
     end
   end

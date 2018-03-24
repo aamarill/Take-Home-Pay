@@ -1,84 +1,84 @@
 <%= link_to "Home", root_path %>
 <%= form_with scope: :calculation, url: calculations_path, local: true do |form| %>
 <h2>Inputs</h2>
+<div style="display: inline-block">
+  <h3>Rates & Hours</h3>
+  <%= form.label "Hourly Rate" %><br>
+  <%= form.number_field :hourly_rate, :value => @statement.parameters['hourly_rate'], :step => 0.01 %><br>
+
+  <%= form.label "Overtime Rate" %><br>
+  <%= form.number_field :overtime_rate, :value => @statement.parameters['overtime_rate'], :step => 0.01 %><br>
+
+  <%= form.label "Overtime Hours" %><br>
+  <%= form.number_field :overtime_hours, :value => @statement.parameters['overtime_hours'], :step => 0.01  %><br>
+</div>
+<div style="display: inline-block">
+  <h3>Insurance</h3>
+  <%= form.label "Life"%><br>
+  <%= form.number_field :life_insurance_premium, :value => @statement.parameters['life_insurance_premium'], :step => 0.01 %><br>
+
+  <%= form.label "Vision" %><br>
+  <%= form.number_field :vision_insurance, :value => @statement.parameters['vision_insurance'], :step => 0.01  %><br>
+
+  <%= form.label :health_insurance, 'Health (FEHB)' %><br>
+  <%= form.number_field :health_insurance, :value => @statement.parameters['health_insurance'], :step => 0.01 %><br>
+
+  <%= form.label :fsa_contribution, 'FSA' %><br>
+  <%= form.number_field :fsa_contribution, :value => @statement.parameters['fsa_contribution'], :step => 0.01  %><br>
+</div>
+<div style="display: inline-block">
+  <h3>Exemptions & Status</h3>
+  <%= form.label "Federal Exemptions" %><br>
+  <%= form.select :federal_exemptions, options_for_select((0..10).to_a, @statement.parameters['federal_exemptions'].to_s) %><br>
+
+  <%= form.label "State Exemptions" %><br>
+  <%= form.select :state_exemptions, options_for_select((0..10).to_a, @statement.parameters['state_exemptions'].to_s) %><br>
+
+  <%= form.label "Marital Status" %><br>
+  <%= form.select :marital_status, options_for_select(['single', 'married'], @statement.parameters['marital_status']) %><br>
+</div>
+<div style="display: inline-block">
+  <h3>TSP & FERS Code</h3>
+  <%= form.label :tsp, 'TSP (%)' %><br>
+  <%= form.number_field :tsp_percentage, :value => @statement.parameters['tsp_percentage'], :step => 0.0000000001 %><br>
+
+  <%= form.label :fers_code, "FERS Code" %><br>
+  <%= form.select :fers_code, options_for_select(['K - 0.80%', 'KR - 3.10%', 'KF - 4.40%'], @statement.parameters['fers_code'])
+  %><br>
+</div>
+<div>
+  <%= form.submit "Calculate" %>
+</div>
+<% end %>
+<% if !@statement.parameters.empty? %>
+  <h2>Statement</h2>
   <div style="display: inline-block">
-    <h3>Rates & Hours</h3>
-    <%= form.label "Hourly Rate" %><br>
-    <%= form.number_field :hourly_rate, :value => @hourly_rate, :step => 0.01 %><br>
-
-    <%= form.label "Overtime Rate" %><br>
-    <%= form.number_field :overtime_rate, :value => @overtime_rate, :step => 0.01 %><br>
-
-    <%= form.label "Overtime Hours" %><br>
-    <%= form.number_field :overtime_hours, :value => @overtime_hours, :step => 0.01  %><br>
-  </div>
-  <div style="display: inline-block">
-    <h3>Insurance</h3>
-    <%= form.label "Life"%><br>
-    <%= form.number_field :life_insurance, :value => @life_insurance, :step => 0.01 %><br>
-
-    <%= form.label "Vision" %><br>
-    <%= form.number_field :vision_insurance, :value => @vision_insurance, :step => 0.01  %><br>
-
-    <%= form.label :health_insurance, 'Health (FEHB)' %><br>
-    <%= form.number_field :health_insurance, :value => @health_insurance, :step => 0.01 %><br>
-
-    <%= form.label :flex_savings_acct, 'FSA' %><br>
-    <%= form.number_field :flex_savings_acct, :value => @flex_savings_acct, :step => 0.01  %><br>
-  </div>
-  <div style="display: inline-block">
-    <h3>Exemptions & Status</h3>
-    <%= form.label "Federal Exemptions" %><br>
-    <%= form.select :federal_exemptions, options_for_select((0..10).to_a, @federal_exemptions.to_s) %><br>
-
-    <%= form.label "State Exemptions" %><br>
-    <%= form.select :state_exemptions, options_for_select((0..10).to_a, @state_exemptions.to_s) %><br>
-
-    <%= form.label "Marital Status" %><br>
-    <%= form.select :marital_status, options_for_select(['single', 'married'], @marital_status) %><br>
-  </div>
-  <div style="display: inline-block">
-    <h3>TSP & FERS Code</h3>
-    <%= form.label :tsp, 'TSP (%)' %><br>
-    <%= form.number_field :tsp_percentage, :value => @tsp_percentage, :step => 0.0000000001 %><br>
-
-    <%= form.label :fers_code, "FERS Code" %><br>
-    <%= form.select :fers_code,
-      options_for_select(['K - 0.80%', 'KR - 3.10%', 'KF - 4.40%'], @fers_code)
-    %><br>
+    <%= "Gross Pay $#{@statement.calculations['gross_pay'].round(2)}" %><br>
+    <%= "Taxable Wages $#{@statement.calculations['taxable_wages'].round(2)}" %><br>
+    <%= "Non-taxable Wages $#{@statement.calculations['non_taxable_wages'].round(2)}" %><br>
+    <%= "Tax-deferred Wages $#{@statement.calculations['tax_deferred_wages'].round(2)}" %><br>
+    <%= "Deductions $ #{@statement.calculations['deductions'].round(2)}" %><br>
+    <%= "Net Pay #{@statement.calculations['take_home_pay'].round(2)}" %>
   </div>
   <div>
-    <%= form.submit "Calculate" %>
+    <h3>Current Earnings</h3>
+    <%= "Regular Pay $#{@statement.calculations['regular_pay'].round(2)}" %><br>
+    <%= "Overtime Pay $#{@statement.calculations['overtime_pay'].round(2)}" %>
+  </div>
+  <div>
+    <div style="display: inline-block">
+      <h3>Deductions</h3>
+      <%= "FEHB $#{@statement.parameters['health_insurance']}"%><br>
+      <%= "Medicare $#{@statement.calculations['medicare_deduction'].round(2)}" %><br>
+      <%= "Retire, FERS $#{@statement.calculations['FERS_deduction'].round(2)}" %><br>
+      <%= "Tax, State $#{@statement.calculations['state_tax'].round(2)}"%><br>
+      <%= "Vision $#{@statement.parameters['vision_insurance']}" %>
+    </div>
+    <div style="display: inline-block">
+      <%= "FSA-HC $#{@statement.parameters['flex_savings_acct']}" %><br>
+      <%= "OASDI $#{@statement.calculations['OASDI_deduction'].round(2)}" %><br>
+      <%= "Tax, Federal $#{@statement.calculations['federal_tax'].round(2)}" %><br>
+      <%= "TSP Savings $#{@statement.calculations['tsp_contribution'].round(2)}" %>
+    </div>
   </div>
 <% end %>
-
-<h2>Bi-Weekly Statement</h2>
-<div style="display: inline-block">
-    <%= "Gross Pay $#{@gross_pay}" %><br>
-    <%= "Taxable Wages $#{@taxable_wages}" %><br>
-    <%= "Non-taxable Wages $#{@non_taxable_wages}" %><br>
-    <%= "Tax-deferred Wages $#{@tax_deferred_wages}" %><br>
-    <%= "Deductions" %><br>
-    <%= "Net Pay" %>
-</div>
-<div>
-  <h3>Current Earnings</h3>
-    <%= "Regular Pay $#{@regular_pay}" %><br>
-    <%= "Overtime Pay $#{@overtime_pay}" %>
-</div>
-<div>
-  <div style="display: inline-block">
-    <h3>Deductions</h3>
-    <%= "FEHB $#{@health_insurance}"%><br>
-    <%= "Medicare $#{@medicare_deduction}" %><br>
-    <%= "Retire, FERS $#{@FERS_deduction}" %><br>
-    <%= "Tax, State $#{@state_tax}"%><br>
-    <%= "Vision $#{@vision_insurance}" %><br>
-  </div>
-  <div style="display: inline-block">
-    <%= "FSA-HC $#{@flex_savings_acct}" %><br>
-    <%= "OASDI $#{@OASDI_deduction}" %><br>
-    <%= "Tax, Federal $#{@federal_tax}" %><br>
-    <%= "TSP Savings $#{@tsp_contribution}" %>
-  </div>
-</div>
