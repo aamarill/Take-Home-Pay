@@ -5,6 +5,9 @@ class CalculationsController < ApplicationController
 
   def create
     @statement = Statement.new(params['calculation'])
-    render "index"
+
+    respond_to do |format|
+      format.js
+    end
   end
 end
