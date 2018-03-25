@@ -9,9 +9,9 @@ RSpec.describe CalculationsController do
   end
 
   describe "POST create" do
-    it "renders index" do
-      post :create, params: {}
-      expect(response).to render_template("index")
+    it "sends AJAX request" do
+      post :create, params: {}, xhr: true
+      expect(response.status).to eq(200)
     end
   end
 end

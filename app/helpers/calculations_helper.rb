@@ -6,10 +6,18 @@ module CalculationsHelper
   end
 
   def state_tax(taxable_wages, state_exemptions)
-    26.05 + 0.044 * ((taxable_wages - state_exemptions * 163) - 1500) - 4.82
+    if taxable_wages <= 0.0
+      0
+    else
+      26.05 + 0.044 * ((taxable_wages - state_exemptions * 163) - 1500) - 4.82
+    end
   end
 
   def federal_tax(taxable_wages, federal_exemptions)
-    71.7 + 0.15 * ((taxable_wages - federal_exemptions * 155.8) - 1050)
+    if taxable_wages <= 0
+      0
+    else
+      71.7 + 0.15 * ((taxable_wages - federal_exemptions * 155.8) - 1050)
+    end
   end
 end

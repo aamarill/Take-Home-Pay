@@ -1,5 +1,4 @@
-<%= link_to "Home", root_path %>
-<%= form_with scope: :calculation, url: calculations_path, local: true do |form| %>
+<%= form_with scope: :calculation do |form| %>
 <h2>Inputs</h2>
 <div style="display: inline-block">
   <h3>Rates & Hours</h3>
@@ -50,35 +49,4 @@
   <%= form.submit "Calculate" %>
 </div>
 <% end %>
-<% if !@statement.parameters.empty? %>
-  <h2>Statement</h2>
-  <div style="display: inline-block">
-    <%= "Gross Pay $#{@statement.calculations['gross_pay'].round(2)}" %><br>
-    <%= "Taxable Wages $#{@statement.calculations['taxable_wages'].round(2)}" %><br>
-    <%= "Non-taxable Wages $#{@statement.calculations['non_taxable_wages'].round(2)}" %><br>
-    <%= "Tax-deferred Wages $#{@statement.calculations['tax_deferred_wages'].round(2)}" %><br>
-    <%= "Deductions $ #{@statement.calculations['deductions'].round(2)}" %><br>
-    <%= "Net Pay #{@statement.calculations['take_home_pay'].round(2)}" %>
-  </div>
-  <div>
-    <h3>Current Earnings</h3>
-    <%= "Regular Pay $#{@statement.calculations['regular_pay'].round(2)}" %><br>
-    <%= "Overtime Pay $#{@statement.calculations['overtime_pay'].round(2)}" %>
-  </div>
-  <div>
-    <div style="display: inline-block">
-      <h3>Deductions</h3>
-      <%= "FEHB $#{@statement.parameters['health_insurance']}"%><br>
-      <%= "Medicare $#{@statement.calculations['medicare_deduction'].round(2)}" %><br>
-      <%= "Retire, FERS $#{@statement.calculations['FERS_deduction'].round(2)}" %><br>
-      <%= "Tax, State $#{@statement.calculations['state_tax'].round(2)}"%><br>
-      <%= "Vision $#{@statement.parameters['vision_insurance']}" %>
-    </div>
-    <div style="display: inline-block">
-      <%= "FSA-HC $#{@statement.parameters['flex_savings_acct']}" %><br>
-      <%= "OASDI $#{@statement.calculations['OASDI_deduction'].round(2)}" %><br>
-      <%= "Tax, Federal $#{@statement.calculations['federal_tax'].round(2)}" %><br>
-      <%= "TSP Savings $#{@statement.calculations['tsp_contribution'].round(2)}" %>
-    </div>
-  </div>
-<% end %>
+<div id="statement"></div>
