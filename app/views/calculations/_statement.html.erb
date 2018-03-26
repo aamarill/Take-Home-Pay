@@ -7,22 +7,22 @@
   <%= "Deductions $ #{statement.calculations['deductions'].round(2)}" %><br>
   <%= "Net Pay #{statement.calculations['take_home_pay'].round(2)}" %>
 </div>
-<div>
+<div style="display: inline-block">
   <h3>Current Earnings</h3>
   <%= "Regular Pay $#{statement.calculations['regular_pay'].round(2)}" %><br>
   <%= "Overtime Pay $#{statement.calculations['overtime_pay'].round(2)}" %>
 </div>
-<div>
+<div style="display: inline-block">
   <div style="display: inline-block">
     <h3>Deductions</h3>
-    <%= "FEHB $#{statement.parameters['health_insurance']}"%><br>
+    <%= "FEHB $#{statement.parameters['health_insurance'].to_f}"%><br>
     <%= "Medicare $#{statement.calculations['medicare_deduction'].round(2)}" %><br>
     <%= "Retire, FERS $#{statement.calculations['FERS_deduction'].round(2)}" %><br>
     <%= "Tax, State $#{statement.calculations['state_tax'].round(2)}"%><br>
-    <%= "Vision $#{statement.parameters['vision_insurance']}" %>
+    <%= "Vision $#{statement.parameters['vision_insurance'].to_f}" %>
   </div>
   <div style="display: inline-block">
-    <%= "FSA-HC $#{statement.parameters['flex_savings_acct']}" %><br>
+    <%= "FSA-HC $#{statement.parameters['fsa_contribution'].to_f}" %><br>
     <%= "OASDI $#{statement.calculations['OASDI_deduction'].round(2)}" %><br>
     <%= "Tax, Federal $#{statement.calculations['federal_tax'].round(2)}" %><br>
     <%= "TSP Savings $#{statement.calculations['tsp_contribution'].round(2)}" %>

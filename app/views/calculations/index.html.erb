@@ -1,5 +1,4 @@
 <%= form_with scope: :calculation do |form| %>
-<h2>Inputs</h2>
 <div style="display: inline-block">
   <h3>Rates & Hours</h3>
   <%= form.label "Hourly Rate" %><br>
@@ -24,16 +23,22 @@
 
   <%= form.label :fsa_contribution, 'FSA' %><br>
   <%= form.number_field :fsa_contribution, :value => @statement.parameters['fsa_contribution'], :step => 0.01  %><br>
+
+  <%= form.label :non_taxable_additional, 'Additional (Non-Taxable)' %><br>
+  <%= form.number_field :non_taxable_additional, :value => @statement.parameters['non_taxable_additional'], :step => 0.01  %><br>
+
+  <%= form.label :tax_deferred_additional, 'Additional (Tax-Deferred)' %><br>
+  <%= form.number_field :tax_deferred_additional, :value => @statement.parameters['tax_deferred_additional'], :step => 0.01  %><br>
 </div>
 <div style="display: inline-block">
   <h3>Exemptions & Status</h3>
-  <%= form.label "Federal Exemptions" %><br>
+  <%= form.label :federal_exemptions, "Federal Exemptions" %><br>
   <%= form.select :federal_exemptions, options_for_select((0..10).to_a, @statement.parameters['federal_exemptions'].to_s) %><br>
 
-  <%= form.label "State Exemptions" %><br>
+  <%= form.label :state_exemptions, "State Exemptions" %><br>
   <%= form.select :state_exemptions, options_for_select((0..10).to_a, @statement.parameters['state_exemptions'].to_s) %><br>
 
-  <%= form.label "Marital Status" %><br>
+  <%= form.label :marital_status, "Marital Status" %><br>
   <%= form.select :marital_status, options_for_select(['single', 'married'], @statement.parameters['marital_status']) %><br>
 </div>
 <div style="display: inline-block">
