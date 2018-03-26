@@ -53,16 +53,18 @@ class Statement
   end
 
   def calculate_non_taxable_wages
-    health_insurance = @parameters['health_insurance'].to_f
-    fsa_contribution = @parameters['fsa_contribution'].to_f
-    vision_insurance = @parameters['vision_insurance'].to_f
-    health_insurance + fsa_contribution + vision_insurance
+    health_insurance       = @parameters['health_insurance'].to_f
+    fsa_contribution       = @parameters['fsa_contribution'].to_f
+    vision_insurance       = @parameters['vision_insurance'].to_f
+    non_taxable_additional = @parameters['non_taxable_additional'].to_f
+    health_insurance + fsa_contribution + vision_insurance + non_taxable_additional
   end
 
   def calculate_tax_deferred_wages
-    regular_pay    = @calculations['regular_pay']
-    tsp_percentage = @parameters['tsp_percentage'].to_f
-    regular_pay * tsp_percentage / 100.0
+    regular_pay             = @calculations['regular_pay']
+    tsp_percentage          = @parameters['tsp_percentage'].to_f
+    tax_deferred_additional = @parameters['tax_deferred_additional'].to_f
+    (regular_pay * tsp_percentage / 100.0) + tax_deferred_additional
   end
 
   def calculate_taxable_wages
