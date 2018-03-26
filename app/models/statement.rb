@@ -100,7 +100,8 @@ class Statement
   def calculate_federal_tax
     taxable_wages      = @calculations['taxable_wages']
     federal_exemptions = @parameters['federal_exemptions'].to_i
-    federal_tax(taxable_wages, federal_exemptions)
+    marital_status = @parameters['marital_status']
+    biweekly_federal_tax(taxable_wages, federal_exemptions, marital_status)
   end
 
   def calculate_TSP_contribution
