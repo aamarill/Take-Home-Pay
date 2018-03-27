@@ -88,9 +88,12 @@ class Statement
   end
 
   def calculate_state_tax
-    taxable_wages    = @calculations['taxable_wages']
-    state_exemptions = @parameters['state_exemptions'].to_i
-    state_tax(taxable_wages, state_exemptions)
+    taxable_wages               = @calculations['taxable_wages']
+    state_exemptions            = @parameters['state_exemptions'].to_i
+    home_state                  = @parameters['home_state'].to_sym
+    marital_status              = @parameters['marital_status'].to_sym
+    additional_state_allowances = @parameters['additional_state_allowances'].to_i
+    biweekly_CA_state_tax(taxable_wages, state_exemptions, home_state, marital_status, additional_state_allowances)
   end
 
   def calculate_OASDI_deduction
@@ -102,7 +105,7 @@ class Statement
   def calculate_federal_tax
     taxable_wages      = @calculations['taxable_wages']
     federal_exemptions = @parameters['federal_exemptions'].to_i
-    marital_status = @parameters['marital_status']
+    marital_status = @parameters['marital_status'].to_sym
     biweekly_federal_tax(taxable_wages, federal_exemptions, marital_status)
   end
 

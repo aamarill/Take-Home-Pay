@@ -33,13 +33,19 @@
 <div style="display: inline-block">
   <h3>Exemptions & Status</h3>
   <%= form.label :federal_exemptions, "Federal Exemptions" %><br>
-  <%= form.select :federal_exemptions, options_for_select((0..10).to_a, @statement.parameters['federal_exemptions'].to_s) %><br>
+  <%= form.select :federal_exemptions, options_for_select((0..9).to_a, @statement.parameters['federal_exemptions'].to_s) %><br>
 
   <%= form.label :state_exemptions, "State Exemptions" %><br>
-  <%= form.select :state_exemptions, options_for_select((0..10).to_a, @statement.parameters['state_exemptions'].to_s) %><br>
+  <%= form.select :state_exemptions, options_for_select((0..9).to_a, @statement.parameters['state_exemptions'].to_s) %><br>
+
+  <%= form.label :additional_state_allowances, "Additional State Allowances" %><br>
+  <%= form.select :additional_state_allowances, options_for_select((0..10).to_a, @statement.parameters['additional_state_allowances'].to_s) %><br>
+
+  <%= form.label :home_state, "State" %><br>
+  <%= form.select :home_state, options_for_select([['CA','california']], @statement.parameters['marital_status']) %><br>
 
   <%= form.label :marital_status, "Marital Status" %><br>
-  <%= form.select :marital_status, options_for_select(['single', 'married'], @statement.parameters['marital_status']) %><br>
+  <%= form.select :marital_status, options_for_select(['single', 'married', ['head of household', 'head_of_household']], @statement.parameters['marital_status']) %><br>
 </div>
 <div style="display: inline-block">
   <h3>TSP & FERS Code</h3>
