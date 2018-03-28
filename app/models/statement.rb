@@ -23,6 +23,7 @@ class Statement
     @calculations['overtime_pay']       = calculate_overtime_pay
     @calculations['gross_pay']          = calculate_gross_pay
     @calculations['non_taxable_wages']  = calculate_non_taxable_wages
+    @calculations['tsp_contribution']   = calculate_TSP_contribution
     @calculations['tax_deferred_wages'] = calculate_tax_deferred_wages
     @calculations['taxable_wages']      = calculate_taxable_wages
     @calculations['medicare_deduction'] = calculate_medicare_deduction
@@ -30,7 +31,6 @@ class Statement
     @calculations['state_tax']          = calculate_state_tax
     @calculations['OASDI_deduction']    = calculate_OASDI_deduction
     @calculations['federal_tax']        = calculate_federal_tax
-    @calculations['tsp_contribution']   = calculate_TSP_contribution
     @calculations['deductions']         = add_all_deductions
     @calculations['take_home_pay']      = calculate_take_home_pay
   end
@@ -61,10 +61,9 @@ class Statement
   end
 
   def calculate_tax_deferred_wages
-    regular_pay             = @calculations['regular_pay']
-    tsp_percentage          = @parameters['tsp_percentage'].to_f
+    tsp_contribution        = @calculations['tsp_contribution']
     tax_deferred_additional = @parameters['tax_deferred_additional'].to_f
-    (regular_pay * tsp_percentage / 100.0) + tax_deferred_additional
+    tsp_contribution + tax_deferred_additional
   end
 
   def calculate_taxable_wages
@@ -105,14 +104,20 @@ class Statement
   def calculate_federal_tax
     taxable_wages      = @calculations['taxable_wages']
     federal_exemptions = @parameters['federal_exemptions'].to_i
-    marital_status = @parameters['marital_status'].to_sym
+    marital_status     = @parameters['marital_status'].to_sym
     biweekly_federal_tax(taxable_wages, federal_exemptions, marital_status)
   end
 
   def calculate_TSP_contribution
-    regular_pay    = @calculations['regular_pay']
-    tsp_percentage = @parameters['tsp_percentage'].to_f
-    regular_pay * tsp_percentage / 100.0
+    regular_pay      = @calculations['regular_pay']
+    tsp_percentage   = @parameters['tsp_percentage'].to_f
+    tsp_fixed_amount = @parameters['tsp_fixed_amount'].to_f
+
+    if tsp_fixed_amount == 0.0
+      regular_pay * tsp_percentage / 100.00
+    else
+      tsp_fixed_amount
+    end
   end
 
   def add_all_deductions
