@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TakeHomePay</title>
+    <title>Take Home Pay</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= link_to "Home", root_path %>
     <%= link_to "Calculator", calculations_path %>
+
+    <% if user_signed_in? %>
+      <%= link_to('Account', edit_user_registration_path) %>
+      <%= link_to('Log Out', destroy_user_session_path, method: :delete) %>
+    <% else %>
+      <%= link_to('Log In', root_path) %>
+    <% end %>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
     <%= yield %>
   </body>
 </html>
