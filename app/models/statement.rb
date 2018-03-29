@@ -8,13 +8,13 @@ class Statement
   OASDI_PERCENTAGE    = 6.2
 
   def initialize(parameters_hash = {})
+    p parameters_hash
     @parameters   = parameters_hash
     @calculations = {}
 
-    if @parameters.class == ActionController::Parameters && !@parameters.empty?
+    if @parameters.class == Parameter
+      p "performing calcs"
       perform_calculations
-    else
-      @parameters = {}
     end
   end
 
@@ -80,9 +80,12 @@ class Statement
   end
 
   def calculate_FERS_deduction
-    fers_code_string = @parameters['fers_code']
-    fers_percentage  = fers_code_string_to_percentage(fers_code_string)
+    # fers_code_string = @parameters['fers_code']
+    # fers_percentage  = fers_code_string_to_percentage(fers_code_string)
+
+    fers_percentage  = @parameters['fers_code']
     regular_pay      = @calculations['regular_pay']
+
     regular_pay * fers_percentage / 100
   end
 

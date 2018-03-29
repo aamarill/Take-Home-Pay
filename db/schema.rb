@@ -10,10 +10,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328155756) do
+ActiveRecord::Schema.define(version: 20180328221621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "calculations", force: :cascade do |t|
+    t.float "gross_pay"
+    t.float "taxable_wages"
+    t.float "non_taxable_wages"
+    t.float "tax_deferred_wages"
+    t.float "deductions"
+    t.float "take_home_pay"
+    t.float "regular_pay"
+    t.float "overtime_pay"
+    t.float "medicare_deduction"
+    t.float "fers_deduction"
+    t.float "state_tax"
+    t.float "oasdi_deduction"
+    t.float "federal_tax"
+    t.float "tsp_contribution"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_calculations_on_user_id"
+  end
+
+  create_table "parameters", force: :cascade do |t|
+    t.float "hourly_rate"
+    t.float "overtime_rate"
+    t.float "overtime_hours"
+    t.float "life_insurance_premium"
+    t.float "vision_insurance"
+    t.float "health_insurance"
+    t.float "fsa_contribution"
+    t.float "non_taxable_additional"
+    t.float "tax_deferred_additional"
+    t.integer "federal_exemptions"
+    t.integer "state_exemptions"
+    t.integer "additional_state_allowances"
+    t.string "home_state"
+    t.string "marital_status"
+    t.float "tsp_percentage"
+    t.float "tsp_fixed_amount"
+    t.float "fers_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_parameters_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -32,4 +77,6 @@ ActiveRecord::Schema.define(version: 20180328155756) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "calculations", "users"
+  add_foreign_key "parameters", "users"
 end

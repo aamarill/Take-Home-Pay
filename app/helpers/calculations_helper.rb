@@ -67,12 +67,12 @@ module CalculationsHelper
     }
   }
 
-
-  def fers_code_string_to_percentage(fers_code_string)
-    start_index = fers_code_string.index('-') + 2
-    end_index   = fers_code_string.length - 2
-    fers_code_string[start_index..end_index].to_f
-  end
+  # def fers_code_string_to_percentage(fers_code_string)
+  #   p fers_code_string
+  #   start_index = fers_code_string.index('-') + 2
+  #   end_index   = fers_code_string.length - 2
+  #   fers_code_string[start_index..end_index].to_f
+  # end
 
   def biweekly_CA_state_tax(taxable_wages, state_exemptions, home_state, marital_status, additional_state_allowances)
     # Table 1.
