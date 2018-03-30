@@ -1,4 +1,4 @@
-class Parameter < ApplicationRecord
+class Statement < ApplicationRecord
   include CalculationsHelper
   belongs_to :user
 
@@ -88,7 +88,6 @@ class Parameter < ApplicationRecord
   end
 
   def check_for_nil_values
-    p "Validation executed!"
     all_attributes = self.attribute_names
     attributes_to_ignore = ["id", "created_at", "updated_at", "user_id"]
 
@@ -98,7 +97,7 @@ class Parameter < ApplicationRecord
     attributes_to_check = all_attributes
 
     attributes_to_check.each do |attribute|
-       self.send(attribute + "=", 0.0) if self.send(attribute).blank?
+      self.send(attribute + "=", 0.0) if self.send(attribute).blank?
     end
   end
 end

@@ -1,6 +1,6 @@
-class CreateParameters < ActiveRecord::Migration[5.1]
+class CreateStatements < ActiveRecord::Migration[5.1]
   def change
-    create_table :parameters do |t|
+    create_table :statements do |t|
       t.float :hourly_rate
       t.float :overtime_rate
       t.float :overtime_hours

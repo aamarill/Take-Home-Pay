@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :calculations
+  resources :statements
 
   devise_for :users
 
