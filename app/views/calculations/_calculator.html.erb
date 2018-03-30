@@ -1,4 +1,4 @@
-<%= form_with model: @parameters, :url => {:controller => 'calculations', :action => 'create'}, method: :post do |form| %>
+<%= form_for @parameters, :url => {:controller => 'calculations', :action => 'create'}, method: :post, remote: true do |form| %>
 <div style="display: inline-block">
   <h3>Rates & Hours</h3>
   <%= form.label "Hourly Rate" %><br>
@@ -33,19 +33,19 @@
 <div style="display: inline-block">
   <h3>Exemptions & Status</h3>
   <%= form.label :federal_exemptions, "Federal Exemptions" %><br>
-  <%= form.select :federal_exemptions, options_for_select((0..9).to_a) %><br>
+  <%= form.select :federal_exemptions, options_for_select((0..9).to_a, @parameters['federal_exemptions']) %><br>
 
   <%= form.label :state_exemptions, "State Exemptions" %><br>
-  <%= form.select :state_exemptions, options_for_select((0..9).to_a) %><br>
+  <%= form.select :state_exemptions, options_for_select((0..9).to_a, @parameters['state_exemptions']) %><br>
 
   <%= form.label :additional_state_allowances, "Additional State Allowances" %><br>
-  <%= form.select :additional_state_allowances, options_for_select((0..10).to_a) %><br>
+  <%= form.select :additional_state_allowances, options_for_select((0..10).to_a, @parameters['additional_state_allowances']) %><br>
 
   <%= form.label :home_state, "State" %><br>
-  <%= form.select :home_state, options_for_select(@american_states) %><br>
+  <%= form.select :home_state, options_for_select(@american_states, @parameters['home_state']) %><br>
 
   <%= form.label :marital_status, "Marital Status" %><br>
-  <%= form.select :marital_status, options_for_select(@marital_statuses) %><br>
+  <%= form.select :marital_status, options_for_select(@marital_statuses, @parameters['marital_status']) %><br>
 </div>
 <div style="display: inline-block">
   <h3>TSP & FERS Code</h3>
@@ -56,7 +56,7 @@
   <%= form.number_field :tsp_fixed_amount, :step => 0.01 %><br>
 
   <%= form.label :fers_code, "FERS Code" %><br>
-  <%= form.select :fers_code, options_for_select(@FERS_codes)%><br>
+  <%= form.select :fers_code, options_for_select(@FERS_codes, @parameters.fers_decimal_to_code_array(@parameters['fers_code']))  %><br>
 </div>
 <div>
   <%= form.submit "Calculate" %>

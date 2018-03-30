@@ -1,5 +1,9 @@
 module CalculationsHelper
 
+  PAY_PERIOD_HOURS    = 80
+  MEDICARE_PERCENTAGE = 1.45
+  OASDI_PERCENTAGE    = 6.2
+
   FEDERAL_PERCENTAGE_METHOD_TABLES = {
     allowances:{
       biweekly: 159.60
@@ -17,8 +21,9 @@ module CalculationsHelper
       }
     }
   }
+
   STATE_PERCENTAGE_METHOD_TABLES   = {
-    california: {
+    California: {
       low_income_exemption_table: {
         biweekly: {
           single: 540,
@@ -67,12 +72,35 @@ module CalculationsHelper
     }
   }
 
-  # def fers_code_string_to_percentage(fers_code_string)
-  #   p fers_code_string
-  #   start_index = fers_code_string.index('-') + 2
-  #   end_index   = fers_code_string.length - 2
-  #   fers_code_string[start_index..end_index].to_f
-  # end
+  def american_states
+    [
+      ['California']
+    ]
+  end
+
+  def marital_statuses
+    ['single', 'married', 'head of household']
+  end
+
+  def fers_codes
+    [
+      ['K - 0.80%', 0.8],
+      ['KR - 3.10%', 3.1],
+      ['KF - 4.40%', 4.4]
+    ]
+  end
+
+  def fers_decimal_to_code_array(decimal)
+    if decimal.class == Float
+      fers_codes. each do |code_array|
+        if code_array[1] == decimal
+          return code_array
+        end
+      end
+    end
+
+    nil
+  end
 
   def biweekly_CA_state_tax(taxable_wages, state_exemptions, home_state, marital_status, additional_state_allowances)
     # Table 1.
