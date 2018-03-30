@@ -1,0 +1,12 @@
+<h1>Your Statements</h1>
+<div>
+  <%= button_to 'New Calculation', new_statement_path, method: :get %>
+</div>
+<br>
+<div>
+  <% @statements.each do |statement| %>
+    <div>
+      <h3><%= link_to statement.gross_pay, statement_path(id: statement.id) %></h3>
+    <div>
+  <% end %>
+</div>

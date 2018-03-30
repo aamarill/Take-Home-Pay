@@ -1,0 +1,6 @@
+<div>
+  ID: <%= @statement.id %> 
+</div>
+<div>
+  <%= button_to 'Delete Statement',{controller: 'statements', action: 'destroy', id: @statement.id}, method: 'delete' %>
+</div>
