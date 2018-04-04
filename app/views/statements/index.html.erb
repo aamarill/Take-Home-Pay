@@ -1,12 +1,24 @@
 <h1>Your Statements</h1>
+
 <div>
-  <%= button_to 'New Calculation', new_statement_path, method: :get %>
+  <%= button_to 'New Calculation', new_user_statement_path, method: :get %>
 </div>
+
 <br>
+
 <div>
   <% @statements.each do |statement| %>
     <div>
-      <h3><%= link_to statement.gross_pay, statement_path(id: statement.id) %></h3>
+      Date Created: <%= link_to statement.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%a %B %d, %Y @%H:%M %p"), user_statement_path(id: statement.id) %><br>
+      Regular Pay: <%= statement.regular_pay.round(2) %>
+      OT Hours: <%= statement.overtime_hours.round(2) %>
+      OT Pay: <%= statement.overtime_pay.round(2) %>
+      Federal Tax: <%= statement.federal_tax.round(2) %>
+      State Tax: <%= statement.federal_tax.round(2) %>
+    </div>
     <div>
+      <%= button_to 'Details', {controller: 'statements', action: 'show', id: statement.id}, method: 'get' %>
+      <%= button_to 'Delete Statement',{controller: 'statements', action: 'destroy', id: statement.id}, method: 'delete' %>
+    </div>
   <% end %>
 </div>

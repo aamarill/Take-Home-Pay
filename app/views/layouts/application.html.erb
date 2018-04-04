@@ -9,14 +9,11 @@
   </head>
 
   <body>
-    <%= link_to "Calculator", new_statement_path %>
-
     <% if user_signed_in? %>
-      <%= link_to('Statements', statements_path) %>
-      <%= link_to('Account', edit_user_registration_path) %>
-      <%= link_to('Log Out', destroy_user_session_path, method: :delete) %>
-    <% else %>
-      <%= link_to('Log In', root_path) %>
+      <%= link_to 'Calculator', new_user_statement_path(current_user.id) %>
+      <%= link_to 'Statements', user_statements_path(current_user.id) %>
+      <%= link_to 'Account', edit_user_registration_path %>
+      <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
     <% end %>
 
     <p class="notice"><%= notice %></p>

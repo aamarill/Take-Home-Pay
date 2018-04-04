@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
 
   # To prevent infinite redirects upon signing in
   def after_sign_in_path_for(resource_or_scope)
-    '/statements'
+    "/users/#{current_user.id}/statements"
   end
 end
