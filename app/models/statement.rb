@@ -57,7 +57,7 @@ class Statement < ApplicationRecord
   end
 
   def tsp_contribution
-    if tsp_fixed_amount
+    if tsp_fixed_amount > 0
       tsp_fixed_amount
     elsif tsp_percentage
       regular_pay * tsp_percentage / 100
