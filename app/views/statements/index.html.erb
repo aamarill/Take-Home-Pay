@@ -9,7 +9,7 @@
 <div>
   <% @statements.each do |statement| %>
     <div>
-      Date Created: <%= link_to statement.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%a %B %d, %Y @%H:%M %p"), user_statement_path(id: statement.id) %><br>
+      Date Created: <%= statement.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%a %B %d, %Y @%H:%M %p") %><br>
       Regular Pay: <%= statement.regular_pay.round(2) %>
       OT Hours: <%= statement.overtime_hours.round(2) %>
       OT Pay: <%= statement.overtime_pay.round(2) %>
