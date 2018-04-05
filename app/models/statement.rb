@@ -59,25 +59,35 @@ class Statement < ApplicationRecord
   def tsp_contribution
     if tsp_fixed_amount > 0
       tsp_fixed_amount
-    elsif tsp_percentage
-      regular_pay * tsp_percentage / 100
     else
-      0.0
+      regular_pay * tsp_percentage / 100.0
+    end
+  end
+
+  def roth_tsp_contribution
+    if roth_tsp_fixed_amount > 0
+      roth_tsp_fixed_amount
+    else
+      regular_pay * roth_tsp_percentage / 100.0
     end
   end
 
   def summed_deductions
     deductions = [
+      health_insurance,
+      vision_insurance,
+      dental_insurance,
       life_insurance_premium,
+      fsa_contribution,
       medicare_deduction,
       fers_deduction,
-      state_tax,
-      vision_insurance,
-      fsa_contribution,
-      health_insurance,
       oasdi_deduction,
+      state_tax,
       federal_tax,
-      tsp_contribution
+      tsp_contribution,
+      roth_tsp_contribution,
+      non_taxable_additional,
+      taxable_additional
     ]
 
     deductions.sum

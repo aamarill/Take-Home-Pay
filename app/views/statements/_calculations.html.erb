@@ -3,8 +3,8 @@
   <%= "Taxable Wages $#{statement.taxable_wages.round(2)}" %><br>
   <%= "Non-taxable Wages $#{statement.non_taxable_wages.round(2)}" %><br>
   <%= "Tax-deferred Wages $#{statement.tax_deferred_wages.round(2)}" %><br>
-  <%= "Deductions $ #{statement.summed_deductions.round(2)}" %><br>
-  <%= "Net Pay #{statement.take_home_pay.round(2)}" %>
+  <%= "Deductions $#{statement.summed_deductions.round(2)}" %><br>
+  <%= "Net Pay $#{statement.take_home_pay.round(2)}" %>
 </div>
 <div style="display: inline-block">
   <h3>Current Earnings</h3>
@@ -17,13 +17,17 @@
     <%= "FEHB $#{statement.health_insurance.to_f}"%><br>
     <%= "Medicare $#{statement.medicare_deduction.round(2)}" %><br>
     <%= "Retire, FERS $#{statement.fers_deduction.round(2)}" %><br>
-    <%= "Tax, State $#{statement.state_tax.round(2)}"%><br>
-    <%= "Vision $#{statement.vision_insurance.to_f}" %>
+    <%= "Tax, State $#{statement.state_tax.round(2)}" %><br>
+    <%= "Vision $#{statement.vision_insurance.to_f}" %><br>
+    <%= "Dental $#{statement.dental_insurance.to_f}" %><br>
+    <%= "FSA-HC $#{statement.fsa_contribution.to_f}" %>
   </div>
   <div style="display: inline-block">
-    <%= "FSA-HC $#{statement.fsa_contribution.to_f}" %><br>
     <%= "OASDI $#{statement.oasdi_deduction.round(2)}" %><br>
     <%= "Tax, Federal $#{statement.federal_tax.round(2)}" %><br>
-    <%= "TSP Savings $#{statement.tsp_contribution.round(2)}" %>
+    <%= "TSP Savings $#{statement.tsp_contribution.round(2)}" %><br>
+    <%= "Roth TSP Savings $#{statement.roth_tsp_contribution.round(2)}" %><br>
+    <%= "Additional (Taxable) $#{statement.taxable_additional.to_f.round(2)}" %><br>
+    <%= "Additional (Non-Taxable) $#{statement.non_taxable_additional.to_f.round(2)}" %>
   </div>
 </div>

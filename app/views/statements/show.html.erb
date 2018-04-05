@@ -19,33 +19,33 @@
 </div><br>
 
 <div>
-  Gross Pay: <%= @statement.gross_pay.round(2) %><br>
-  Taxable Wages: <%= @statement.taxable_wages.round(2) %><br>
-  Nontaxable Wages: <%= @statement.non_taxable_wages.round(2) %><br>
-  Tax Deferred Wages: <%= @statement.tax_deferred_wages.round(2) %><br>
-  Deductions: <%= @statement.summed_deductions.round(2) %><br>
-  Net Pay: <%= @statement.take_home_pay.round(2)%><br>
+  Gross Pay: $<%= @statement.gross_pay.round(2) %><br>
+  Taxable Wages: $<%= @statement.taxable_wages.round(2) %><br>
+  Nontaxable Wages: $<%= @statement.non_taxable_wages.round(2) %><br>
+  Tax Deferred Wages: $<%= @statement.tax_deferred_wages.round(2) %><br>
+  Deductions: $<%= @statement.summed_deductions.round(2) %><br>
+  Net Pay: $<%= @statement.take_home_pay.round(2)%><br>
 </div>
 
 <div style="display: inline-block">
   <h3>Current Earning</h3>
-  Regular Pay: <%= @statement.regular_pay.round(2) %><br>
-  Overtime Hours: <%= @statement.overtime_hours %><br>
-  Overtime Pay: <%= @statement.overtime_pay.round(2) %><br>
+  Regular Pay: $<%= @statement.regular_pay.round(2) %><br>
+  Overtime Hours: $<%= @statement.overtime_hours %><br>
+  Overtime Pay: $<%= @statement.overtime_pay.round(2) %><br>
 </div>
 
 <div style="display: inline-block">
   <div style="display: inline-block">
     <h3>Deductions</h3>
-    Life: <%= @statement.life_insurance_premium %><br>
-    Medicare: <%= @statement.medicare_deduction.round(2) %><br>
-    Retire, FERS <%= @statement.fers_deduction.round(2) %><br>
-    Tax, state <%= @statement.state_tax.round(2) %>
+    Life: $<%= @statement.life_insurance_premium %><br>
+    Medicare: $<%= @statement.medicare_deduction.round(2) %><br>
+    Retire, FERS $<%= @statement.fers_deduction.round(2) %><br>
+    Tax, state $<%= @statement.state_tax.round(2) %>
   </div>
   <div style="display: inline-block">
-    FEHB: <%= @statement.health_insurance %><br>
-    OASDI: <%= @statement.oasdi_deduction.round(2) %><br>
-    Tax, federal <%= @statement.federal_tax.round(2) %><br>
-    TSP savings <%= @statement.tsp_contribution.round(2) %><br>
+    FEHB: $<%= @statement.health_insurance %><br>
+    OASDI: $<%= @statement.oasdi_deduction.round(2) %><br>
+    Tax, federal $<%= @statement.federal_tax.round(2) %><br>
+    TSP savings $<%= @statement.tsp_contribution.round(2) %><br>
   </div>
 </div>

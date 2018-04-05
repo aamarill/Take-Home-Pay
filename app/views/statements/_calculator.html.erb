@@ -1,65 +1,118 @@
 <%= form_for @statement, :url => {:controller => 'statements', :action => 'create'}, method: :post, remote: true do |form| %>
-<div style="display: inline-block">
-  <h3>Rates & Hours</h3>
-  <%= form.label "Hourly Rate" %><br>
-  <%= form.number_field :hourly_rate, :step => 0.01 %><br>
+  <div class="aa-form-fields">
+    <h3>Rates & Hours</h3>
+    <div>
+      <%= form.label "Hourly Rate" %><br>
+      <%= form.number_field :hourly_rate, :step => 0.01 %>
+    </div>
 
-  <%= form.label "Overtime Rate" %><br>
-  <%= form.number_field :overtime_rate, :step => 0.01 %><br>
+    <div>
+      <%= form.label "Overtime Rate" %><br>
+      <%= form.number_field :overtime_rate, :step => 0.01 %>
+    </div>
 
-  <%= form.label "Overtime Hours" %><br>
-  <%= form.number_field :overtime_hours, :step => 0.01  %><br>
-</div>
-<div style="display: inline-block">
-  <h3>Insurance</h3>
-  <%= form.label "Life"%><br>
-  <%= form.number_field :life_insurance_premium, :step => 0.01 %><br>
+    <div>
+      <%= form.label "Overtime Hours" %><br>
+      <%= form.number_field :overtime_hours, :step => 0.01  %>
+    </div>
+  </div>
+  <div class="aa-form-fields">
+    <h3>Insurance</h3>
+    <div>
+      <%= form.label :health_insurance, 'Health (FEHB)' %><br>
+      <%= form.number_field :health_insurance, :step => 0.01 %>
+    </div>
 
-  <%= form.label "Vision" %><br>
-  <%= form.number_field :vision_insurance, :step => 0.01  %><br>
+    <div>
+      <%= form.label :dental_insurance, 'Dental' %><br>
+      <%= form.number_field :dental_insurance, :step => 0.01 %>
+    </div>
 
-  <%= form.label :health_insurance, 'Health (FEHB)' %><br>
-  <%= form.number_field :health_insurance, :step => 0.01 %><br>
+    <div>
+      <%= form.label "Vision" %><br>
+      <%= form.number_field :vision_insurance, :step => 0.01  %>
+    </div>
 
-  <%= form.label :fsa_contribution, 'FSA' %><br>
-  <%= form.number_field :fsa_contribution, :step => 0.01  %><br>
+    <div>
+      <%= form.label "Life"%><br>
+      <%= form.number_field :life_insurance_premium, :step => 0.01 %>
+    </div>
 
-  <%= form.label :non_taxable_additional, 'Additional (Non-Taxable)' %><br>
-  <%= form.number_field :non_taxable_additional, :step => 0.01  %><br>
+    <div>
+      <%= form.label :fsa_contribution, 'FSA' %><br>
+      <%= form.number_field :fsa_contribution, :step => 0.01  %>
+    </div>
+  </div>
+  <div class="aa-form-fields aa-spaced">
+    <h3>Exemptions & Status</h3>
+    <div>
+      <%= form.label :federal_exemptions, "Fed" %><br>
+      <%= form.select :federal_exemptions, options_for_select((0..9).to_a, @statement['federal_exemptions']) %>
+    </div>
 
-  <%= form.label :tax_deferred_additional, 'Additional (Tax-Deferred)' %><br>
-  <%= form.number_field :tax_deferred_additional, :step => 0.01  %><br>
-</div>
-<div style="display: inline-block">
-  <h3>Exemptions & Status</h3>
-  <%= form.label :federal_exemptions, "Federal Exemptions" %><br>
-  <%= form.select :federal_exemptions, options_for_select((0..9).to_a, @statement['federal_exemptions']) %><br>
+    <div>
+      <%= form.label :state_exemptions, "State" %><br>
+      <%= form.select :state_exemptions, options_for_select((0..9).to_a, @statement['state_exemptions']) %><br>
+    </div>
 
-  <%= form.label :state_exemptions, "State Exemptions" %><br>
-  <%= form.select :state_exemptions, options_for_select((0..9).to_a, @statement['state_exemptions']) %><br>
+    <div>
+      <%= form.label :additional_state_allowances, "Add'l" %><br>
+      <%= form.select :additional_state_allowances, options_for_select((0..10).to_a, @statement['additional_state_allowances']) %><br>
+    </div>
 
-  <%= form.label :additional_state_allowances, "Additional State Allowances" %><br>
-  <%= form.select :additional_state_allowances, options_for_select((0..10).to_a, @statement['additional_state_allowances']) %><br>
+    <div>
+      <%= form.label :home_state, "State" %><br>
+      <%= form.select :home_state, options_for_select(@american_states, @statement['home_state']) %><br>
+    </div>
 
-  <%= form.label :home_state, "State" %><br>
-  <%= form.select :home_state, options_for_select(@american_states, @statement['home_state']) %><br>
+    <div>
+      <%= form.label :marital_status, "Marital Status" %><br>
+      <%= form.select :marital_status, options_for_select(@marital_statuses, @statement['marital_status']) %><br>
+    </div>
+  </div>
+  <div class="aa-form-fields">
+    <h3>TSP & FERS</h3>
 
-  <%= form.label :marital_status, "Marital Status" %><br>
-  <%= form.select :marital_status, options_for_select(@marital_statuses, @statement['marital_status']) %><br>
-</div>
-<div style="display: inline-block">
-  <h3>TSP & FERS Code</h3>
-  <%= form.label :tsp_percentage, 'TSP (%)' %><br>
-  <%= form.number_field :tsp_percentage, :step => 0.0000000001 %><br>
-  <p "display: inline-block"> Or,</p>
-  <%= form.label :tsp_fixed_amount, 'TSP (fixed amount)' %><br>
-  <%= form.number_field :tsp_fixed_amount, :step => 0.01 %><br>
+    <div>
+      <%= form.label :tsp_fixed_amount, 'TSP (fixed amount)' %><br>
+      <%= form.number_field :tsp_fixed_amount, :step => 0.01 %><br>
+    </div>
+    or,
+    <div>
+      <%= form.label :tsp_percentage, 'TSP (%)' %><br>
+      <%= form.number_field :tsp_percentage, :step => 0.001 %><br>
+    </div>
 
-  <%= form.label :fers_code, "FERS Code" %><br>
-  <%= form.select :fers_code, options_for_select(@FERS_codes, @statement.fers_decimal_to_code_array(@statement['fers_code']))  %><br>
-</div>
-<div>
-  <%= form.submit "Calculate" %>
-  <%= form.submit "Save Calculation" %>
-</div>
+    <div>
+      <%= form.label :roth_tsp_fixed_amount, 'Roth TSP (fixed amount)' %><br>
+      <%= form.number_field :roth_tsp_fixed_amount, :step => 0.01 %><br>
+    </div>
+    or,
+    <div>
+      <%= form.label :roth_tsp_percentage, 'Roth TSP (%)' %><br>
+      <%= form.number_field :roth_tsp_percentage, :step => 0.001 %><br>
+    </div>
+
+    <div>
+      <%= form.label :fers_code, "FERS Code" %><br>
+      <%= form.select :fers_code, options_for_select(@FERS_codes, @statement.fers_decimal_to_code_array(@statement['fers_code']))  %><br>
+    </div>
+  </div>
+  <div class="aa-form-fields">
+    <h3>Additional</h3>
+
+    <div>
+      <%= form.label :non_taxable_additional, 'Additional (Non-Taxable)' %><br>
+      <%= form.number_field :non_taxable_additional, :step => 0.01  %><br>
+    </div>
+
+    <div>
+      <%= form.label :taxable_additional, 'Additional (Taxable)' %><br>
+      <%= form.number_field :taxable_additional, :step => 0.01  %><br>
+    </div>
+  </div><br>
+  <div>
+    <%= form.submit "Calculate", class: 'btn btn-primary' %>
+    <%= form.submit "Save Calculation", class: 'btn btn-success' %>
+  </div>
 <% end %>
