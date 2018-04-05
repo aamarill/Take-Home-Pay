@@ -3,22 +3,30 @@
   <head>
     <title>Take Home Pay</title>
     <%= csrf_meta_tags %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag %>
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= link_to 'Calculator', new_user_statement_path(current_user.id) %>
-      <%= link_to 'Statements', user_statements_path(current_user.id) %>
-      <%= link_to 'Account', edit_user_registration_path %>
-      <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
-    <% end %>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="container">
+      <h1> Take-Home Pay</h1>
+    </div>
+    <div class="container">
 
-    <%= yield %>
+      <ul class="nav nav-tabs">
+        <% if user_signed_in? %>
+          <li><%= link_to 'Calculator', new_user_statement_path(current_user.id) %></li>
+          <li><%= link_to 'Statements', user_statements_path(current_user.id) %></li>
+          <li><%= link_to 'Account', edit_user_registration_path %></li>
+          <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete %></li>
+        <% end %>
+      </ul>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
