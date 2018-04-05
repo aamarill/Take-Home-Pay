@@ -57,18 +57,22 @@ class Statement < ApplicationRecord
   end
 
   def tsp_contribution
-    if tsp_fixed_amount > 0
+    if tsp_fixed_amount && tsp_fixed_amount > 0
       tsp_fixed_amount
-    else
+    elsif tsp_percentage
       regular_pay * tsp_percentage / 100.0
+    else
+      0.0
     end
   end
 
   def roth_tsp_contribution
-    if roth_tsp_fixed_amount > 0
+    if roth_tsp_fixed_amount && roth_tsp_fixed_amount > 0
       roth_tsp_fixed_amount
-    else
+    elsif roth_tsp_percentage
       regular_pay * roth_tsp_percentage / 100.0
+    else
+      0.0
     end
   end
 
