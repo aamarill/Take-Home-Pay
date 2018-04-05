@@ -10,36 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404232812) do
+ActiveRecord::Schema.define(version: 20180405080744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "statements", force: :cascade do |t|
-    t.float "hourly_rate"
-    t.float "overtime_rate"
-    t.float "overtime_hours"
-    t.float "life_insurance_premium"
-    t.float "vision_insurance"
-    t.float "health_insurance"
-    t.float "fsa_contribution"
-    t.float "non_taxable_additional"
-    t.float "tax_deferred_additional"
-    t.integer "federal_exemptions"
-    t.integer "state_exemptions"
-    t.integer "additional_state_allowances"
-    t.string "home_state"
-    t.string "marital_status"
-    t.float "tsp_percentage"
-    t.float "tsp_fixed_amount"
-    t.float "fers_code"
+    t.float "hourly_rate", null: false
+    t.float "overtime_rate", null: false
+    t.float "overtime_hours", null: false
+    t.float "life_insurance_premium", null: false
+    t.float "vision_insurance", null: false
+    t.float "health_insurance", null: false
+    t.float "fsa_contribution", null: false
+    t.float "non_taxable_additional", null: false
+    t.float "tax_deferred_additional", null: false
+    t.integer "federal_exemptions", null: false
+    t.integer "state_exemptions", null: false
+    t.integer "additional_state_allowances", null: false
+    t.string "home_state", null: false
+    t.string "marital_status", null: false
+    t.float "tsp_percentage", null: false
+    t.float "tsp_fixed_amount", null: false
+    t.float "fers_code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.float "taxable_additional"
-    t.float "roth_tsp_percentage"
-    t.float "roth_tsp_fixed_amount"
-    t.float "dental_insurance"
+    t.float "taxable_additional", null: false
+    t.float "roth_tsp_percentage", null: false
+    t.float "roth_tsp_fixed_amount", null: false
+    t.float "dental_insurance", null: false
     t.index ["user_id"], name: "index_statements_on_user_id"
   end
 

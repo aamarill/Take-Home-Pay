@@ -1,0 +1,25 @@
+class ChangeColumnNullToStatements < ActiveRecord::Migration[5.1]
+  def change
+    change_column_null(:statements, :hourly_rate, false, 0)
+    change_column_null(:statements, :overtime_rate, false, 0)
+    change_column_null(:statements, :overtime_hours, false, 0)
+    change_column_null(:statements, :life_insurance_premium, false, 0)
+    change_column_null(:statements, :vision_insurance, false, 0)
+    change_column_null(:statements, :health_insurance, false, 0)
+    change_column_null(:statements, :fsa_contribution, false, 0)
+    change_column_null(:statements, :non_taxable_additional, false, 0)
+    change_column_null(:statements, :tax_deferred_additional, false, 0)
+    change_column_null(:statements, :federal_exemptions, false, 0)
+    change_column_null(:statements, :state_exemptions, false, 0)
+    change_column_null(:statements, :additional_state_allowances, false, 0)
+    change_column_null(:statements, :home_state, false, "")
+    change_column_null(:statements, :marital_status, false, "")
+    change_column_null(:statements, :tsp_percentage, false, 0)
+    change_column_null(:statements, :tsp_fixed_amount, false, 0)
+    change_column_null(:statements, :fers_code, false, 0)
+    change_column_null(:statements, :taxable_additional, false, 0)
+    change_column_null(:statements, :roth_tsp_percentage, false, 0)
+    change_column_null(:statements, :roth_tsp_fixed_amount, false, 0)
+    change_column_null(:statements, :dental_insurance, false, 0)
+  end
+end
