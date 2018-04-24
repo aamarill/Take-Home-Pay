@@ -29,8 +29,8 @@
 <div class="well aa-output-card">
   <h3>Deductions</h3>
   <div class="aa-output-card">
-    <span class="aa-item-title">FEHB</span>
-    <span class="aa-item-value"><%= "$#{statement.health_insurance.to_f}"%></span>
+    <span class="aa-item-title">Life</span>
+    <span class="aa-item-value"><%= "$#{statement.life_insurance_premium.to_f}"%></span>
     <br>
     <span class="aa-item-title">Medicare</span>
     <span class="aa-item-value"><%= "$#{statement.medicare_deduction.round(2)}" %></span>
@@ -51,6 +51,9 @@
     <span class="aa-item-value"><%= "$#{statement.fsa_contribution.to_f}" %></span>
   </div>
   <div class="aa-output-card aa-right-column">
+    <span class="aa-item-title">FEHB</span>
+    <span class="aa-item-value"><%= "$#{statement.health_insurance.to_f}"%></span>
+    <br>
     <span class="aa-item-title">OASDI</span>
     <span class="aa-item-value"><%= "$#{statement.oasdi_deduction.round(2)}" %></span>
     <br>
