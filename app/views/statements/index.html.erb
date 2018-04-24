@@ -9,13 +9,10 @@
   <% @statements.each do |statement| %>
     <div class="well" style="overflow:auto">
       <div>
-        <span style="font-weight:bold">Date Created:</span> <%= statement.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%a %B %d, %Y @%H:%M %p") %><br>
-        <span style="font-weight:bold">Take-Home Pay:</span> <%= statement.take_home_pay.round(2) %>
-        <span style="font-weight:bold">Regular Pay:</span> <%= statement.regular_pay.round(2) %>
+        <span style="font-weight:bold">Date Created:</span> <%= statement.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%a %B %d, %Y %H:%M %p") %> <br>
+        <span style="font-weight:bold">Take-Home Pay:</span> <%= "$#{statement.take_home_pay.round(2)}" %><br>
+        <span style="font-weight:bold">Regular Pay:</span> <%= "$#{statement.regular_pay.round(2)}" %><br>
         <span style="font-weight:bold">OT Hours:</span> <%= statement.overtime_hours.round(2) %>
-        <span style="font-weight:bold">OT Pay:</span> <%= statement.overtime_pay.round(2) %>
-        <span style="font-weight:bold">Federal Tax:</span> <%= statement.federal_tax.round(2) %>
-        <span style="font-weight:bold">State Tax:</span> <%= statement.federal_tax.round(2) %>
       </div>
       <br>
       <div style="float:right">

@@ -1,51 +1,105 @@
 <div>
   <h1>Statement</h1>
-  <h3>
-    <%= @statement.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%a %B %d, %Y @%H:%M %p") %>
-  </h3>
+  <h3><%= @statement.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%a %B %d, %Y @%H:%M %p") %></h3>
 </div>
 
-<div>
-  <%= button_to 'Delete Statement',{controller: 'statements', action: 'destroy', id: @statement.id}, method: 'delete' %>
-</div><br>
-
-<div>
-  Hourly Rate: <%= @statement.hourly_rate %><br>
-  OT Rate: <%= @statement.overtime_rate %><br>
-  Marital Status: </span><%= @statement.marital_status %><br>
-  Exemptions<br>
-  Fed Exemptions: <%= @statement.federal_exemptions %><br>
-  State Exemptions: <%= @statement.state_exemptions %>
-</div><br>
-
-<div>
-  Gross Pay: $<%= @statement.gross_pay.round(2) %><br>
-  Taxable Wages: $<%= @statement.taxable_wages.round(2) %><br>
-  Nontaxable Wages: $<%= @statement.non_taxable_wages.round(2) %><br>
-  Tax Deferred Wages: $<%= @statement.tax_deferred_wages.round(2) %><br>
-  Deductions: $<%= @statement.summed_deductions.round(2) %><br>
-  Net Pay: $<%= @statement.take_home_pay.round(2)%><br>
+<div class="well aa-output-card">
+  <span class="aa-item-title">Hourly rate:</span>
+  <span class="aa-item-value">$<%= @statement.hourly_rate %></span>
+  <br>
+  <span class="aa-item-title">OT Rate:</span>
+  <span class="aa-item-value">$<%= @statement.overtime_rate %></span>
+  <br>
+  <span class="aa-item-title">Marital Status:</span>
+  <span class="aa-item-value"><%= @statement.marital_status %></span>
+  <br>
+  <span class="aa-item-title">Fed Exemptions:</span>
+  <span class="aa-item-value"><%= @statement.federal_exemptions %></span>
+  <br>
+  <span class="aa-item-title">State Exemptions:</span>
+  <span class="aa-item-value"><%= @statement.state_exemptions %></span>
 </div>
 
-<div style="display: inline-block">
+<div class="well aa-output-card">
+  <span class="aa-item-title">Gross Pay:</span>
+  <span class="aa-item-value"><%= "$#{@statement.gross_pay.round(2)}" %></span>
+  <br>
+  <span class="aa-item-title">Taxable Wages:</span>
+  <span class="aa-item-value"><%= "$#{@statement.taxable_wages.round(2)}" %></span>
+  <br>
+  <span class="aa-item-title">Nontaxable Wages:</span>
+  <span class="aa-item-value"><%= "$#{@statement.non_taxable_wages.round(2)}" %></span>
+  <br>
+  <span class="aa-item-title">Tax Deferred Wages:</span>
+  <span class="aa-item-value"><%= "$#{@statement.tax_deferred_wages.round(2)}" %></span>
+  <br>
+  <span class="aa-item-title">Deductions:</span>
+  <span class="aa-item-value"><%= "$#{@statement.summed_deductions.round(2)}" %></span>
+  <br>
+  <span class="aa-item-title aa-main-output">Net Pay:</span>
+  <span class="aa-item-value aa-main-output"><%= "$#{@statement.take_home_pay.round(2)}"%></span>
+</div>
+
+<div class="well aa-card-margin">
   <h3>Current Earning</h3>
-  Regular Pay: $<%= @statement.regular_pay.round(2) %><br>
-  Overtime Hours: $<%= @statement.overtime_hours %><br>
-  Overtime Pay: $<%= @statement.overtime_pay.round(2) %><br>
+  <span class="aa-item-title aa-no-right-margin">Regular Pay: </span>
+  <span class="aa-right-margin"><%= "$#{@statement.regular_pay.round(2)}" %></span>
+
+  <span class="aa-item-title aa-no-right-margin">Overtime Hours:</span>
+  <span class="aa-right-margin"><%= @statement.overtime_hours %></span>
+
+  <span class="aa-item-title aa-no-right-margin">Overtime Pay:</span>
+  <span><%= "$#{@statement.overtime_pay.round(2)}" %></span>
 </div>
 
-<div style="display: inline-block">
-  <div style="display: inline-block">
-    <h3>Deductions</h3>
-    Life: $<%= @statement.life_insurance_premium %><br>
-    Medicare: $<%= @statement.medicare_deduction.round(2) %><br>
-    Retire, FERS $<%= @statement.fers_deduction.round(2) %><br>
-    Tax, state $<%= @statement.state_tax.round(2) %>
+<div class="well aa-output-card">
+  <h3>Deductions</h3>
+  <div class="aa-output-card">
+    <span class="aa-item-title">Life:</span>
+    <span class="aa-item-value"><%= "$#{@statement.life_insurance_premium}" %></span>
+    <br>
+    <span class="aa-item-title">Medicare:</span>
+    <span class="aa-item-value"><%= "$#{@statement.medicare_deduction.round(2)}" %></span>
+    <br>
+    <span class="aa-item-title">Retire, FERS</span>
+    <span class="aa-item-value"><%= "$#{@statement.fers_deduction.round(2)}" %></span>
+    <br>
+    <span class="aa-item-title">Tax, state</span>
+    <span class="aa-item-value">$<%= @statement.state_tax.round(2) %></span>
+    <br>
+    <span class="aa-item-title">Vision</span>
+    <span class="aa-item-value">$<%= @statement.vision_insurance.to_f %></span>
+    <br>
+    <span class="aa-item-title">Dental</span>
+    <span class="aa-item-value">$<%= @statement.dental_insurance.to_f %></span>
+    <br>
+    <span class="aa-item-title">FSA-HC</span>
+    <span class="aa-item-value">$<%= @statement.fsa_contribution.to_f %></span>
   </div>
-  <div style="display: inline-block">
-    FEHB: $<%= @statement.health_insurance %><br>
-    OASDI: $<%= @statement.oasdi_deduction.round(2) %><br>
-    Tax, federal $<%= @statement.federal_tax.round(2) %><br>
-    TSP savings $<%= @statement.tsp_contribution.round(2) %><br>
+  <div class="aa-output-card">
+    <span class="aa-item-title">FEHB:</span>
+    <span class="aa-item-value">$<%= @statement.health_insurance %></span>
+    <br>
+    <span class="aa-item-title">OASDI:</span>
+    <span class="aa-item-value">$<%= @statement.oasdi_deduction.round(2) %></span>
+    <br>
+    <span class="aa-item-title">Tax, federal</span>
+    <span class="aa-item-value">$<%= @statement.federal_tax.round(2) %></span>
+    <br>
+    <span class="aa-item-title">TSP savings</span>
+    <span class="aa-item-value">$<%= @statement.tsp_contribution.round(2) %></span>
+    <br>
+    <span class="aa-item-title">Roth TSP Savings</span>
+    <span class="aa-item-value">$<%= @statement.roth_tsp_contribution.round(2)%></span>
+    <br>
+    <span class="aa-item-title">Additional (Taxable)</span>
+    <span class="aa-item-value">$<%= @statement.taxable_additional.to_f.round(2) %></span>
+    <br>
+    <span class="aa-item-title">Additional (Non-Taxable) </span>
+    <span class="aa-item-value">$<%= @statement.non_taxable_additional.to_f.round(2) %></span>
   </div>
+</div>
+
+<div>
+  <%= button_to 'Delete Statement',{controller: 'statements', action: 'destroy', id: @statement.id}, method: 'delete', class: "btn btn-danger" %>
 </div>

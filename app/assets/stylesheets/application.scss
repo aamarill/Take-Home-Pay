@@ -33,7 +33,6 @@
 
 .aa-output-card {
   display: inline-block;
-  float: left;
   margin: 5px;
 }
 
@@ -53,4 +52,16 @@
 
 .aa-right-column {
   margin-left: 10px;
+}
+
+.aa-right-margin {
+  margin-right: 30px;
+}
+
+.aa-no-right-margin {
+  margin-right: 0;
+}
+
+.aa-card-margin {
+  margin: 5px;
 }
