@@ -1,33 +1,72 @@
-<div style="display: inline-block">
-  <%= "Gross Pay $#{statement.gross_pay.round(2)}" %><br>
-  <%= "Taxable Wages $#{statement.taxable_wages.round(2)}" %><br>
-  <%= "Non-taxable Wages $#{statement.non_taxable_wages.round(2)}" %><br>
-  <%= "Tax-deferred Wages $#{statement.tax_deferred_wages.round(2)}" %><br>
-  <%= "Deductions $#{statement.summed_deductions.round(2)}" %><br>
-  <%= "Net Pay $#{statement.take_home_pay.round(2)}" %>
-</div>
-<div style="display: inline-block">
+<div class="well aa-output-card">
   <h3>Current Earnings</h3>
-  <%= "Regular Pay $#{statement.regular_pay.round(2)}" %><br>
-  <%= "Overtime Pay $#{statement.overtime_pay.round(2)}" %>
+  <span class="aa-item-title">Regular Pay</span>
+  <span class="aa-item-value"><%= "$#{statement.regular_pay.round(2)}" %></span>
+  <br>
+  <span class="aa-item-title">Overtime Pay</span>
+  <span class="aa-item-value"><%= "$#{statement.overtime_pay.round(2)}" %></span>
 </div>
-<div style="display: inline-block">
-  <div style="display: inline-block">
-    <h3>Deductions</h3>
-    <%= "FEHB $#{statement.health_insurance.to_f}"%><br>
-    <%= "Medicare $#{statement.medicare_deduction.round(2)}" %><br>
-    <%= "Retire, FERS $#{statement.fers_deduction.round(2)}" %><br>
-    <%= "Tax, State $#{statement.state_tax.round(2)}" %><br>
-    <%= "Vision $#{statement.vision_insurance.to_f}" %><br>
-    <%= "Dental $#{statement.dental_insurance.to_f}" %><br>
-    <%= "FSA-HC $#{statement.fsa_contribution.to_f}" %>
+<div class="well aa-output-card">
+  <h3>Summary</h3>
+  <span class="aa-item-title aa-main-output">Take Home Pay</span>
+  <span class="aa-item-value aa-main-output"><%= "$#{statement.take_home_pay.round(2)}" %></span>
+  <br>
+  <span class="aa-item-title">Gross Pay </span>
+  <span class="aa-item-value"><%= "$#{statement.gross_pay.round(2)}" %></span>
+  <br>
+  <span class="aa-item-title">Taxable Wages</span>
+  <span class="aa-item-value"><%= "$#{statement.taxable_wages.round(2)}" %></span>
+  <br>
+  <span class="aa-item-title">Non-taxable Wages</span>
+  <span class="aa-item-value"><%= "$#{statement.non_taxable_wages.round(2)}" %></span>
+  <br>
+  <span class="aa-item-title">Tax-deferred Wages</span>
+  <span class="aa-item-value"><%= "$#{statement.tax_deferred_wages.round(2)}" %></span>
+  <br>
+  <span class="aa-item-title">Deductions</span>
+  <span class="aa-item-value"><%= "$#{statement.summed_deductions.round(2)}" %></span>
+</div>
+<div class="well aa-output-card">
+  <h3>Deductions</h3>
+  <div class="aa-output-card">
+    <span class="aa-item-title">FEHB</span>
+    <span class="aa-item-value"><%= "$#{statement.health_insurance.to_f}"%></span>
+    <br>
+    <span class="aa-item-title">Medicare</span>
+    <span class="aa-item-value"><%= "$#{statement.medicare_deduction.round(2)}" %></span>
+    <br>
+    <span class="aa-item-title">Retire, FERS</span>
+    <span class="aa-item-value"><%= "$#{statement.fers_deduction.round(2)}" %></span>
+    <br>
+    <span class="aa-item-title">Tax, State</span>
+    <span class="aa-item-value"><%= "$#{statement.state_tax.round(2)}" %></span>
+    <br>
+    <span class="aa-item-title">Vision</span>
+    <span class="aa-item-value"><%= "$#{statement.vision_insurance.to_f}" %></span>
+    <br>
+    <span class="aa-item-title">Dental</span>
+    <span class="aa-item-value"><%= "$#{statement.dental_insurance.to_f}" %></span>
+    <br>
+    <span class="aa-item-title">FSA-HC</span>
+    <span class="aa-item-value"><%= "$#{statement.fsa_contribution.to_f}" %></span>
   </div>
-  <div style="display: inline-block">
-    <%= "OASDI $#{statement.oasdi_deduction.round(2)}" %><br>
-    <%= "Tax, Federal $#{statement.federal_tax.round(2)}" %><br>
-    <%= "TSP Savings $#{statement.tsp_contribution.round(2)}" %><br>
-    <%= "Roth TSP Savings $#{statement.roth_tsp_contribution.round(2)}" %><br>
-    <%= "Additional (Taxable) $#{statement.taxable_additional.to_f.round(2)}" %><br>
-    <%= "Additional (Non-Taxable) $#{statement.non_taxable_additional.to_f.round(2)}" %>
+  <div class="aa-output-card aa-right-column">
+    <span class="aa-item-title">OASDI</span>
+    <span class="aa-item-value"><%= "$#{statement.oasdi_deduction.round(2)}" %></span>
+    <br>
+    <span class="aa-item-title">Tax, Federal</span>
+    <span class="aa-item-value"><%= "$#{statement.federal_tax.round(2)}" %></span>
+    <br>
+    <span class="aa-item-title">TSP Savings</span>
+    <span class="aa-item-value"><%= "$#{statement.tsp_contribution.round(2)}" %></span>
+    <br>
+    <span class="aa-item-title">Roth TSP Savings</span>
+    <span class="aa-item-value"><%= " $#{statement.roth_tsp_contribution.round(2)}" %></span>
+    <br>
+    <span class="aa-item-title">Additional (Taxable)</span>
+    <span class="aa-item-value"><%= " $#{statement.taxable_additional.to_f.round(2)}" %></span>
+    <br>
+    <span class="aa-item-title">Additional (Non-Taxable) </span>
+    <span class="aa-item-value"><%= "$#{statement.non_taxable_additional.to_f.round(2)}" %></span>
   </div>
 </div>
