@@ -1,17 +1,32 @@
-# README
+# Take-Home Pay Calculator
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A calculator for US federal employees to calculate their take-home pay.
 
-Things you may want to cover:
+https://take-home-pay.herokuapp.com/
 
-* Ruby version
-  2.4.1
-* System dependencies
 
-* Configuration
+## Installation and configuration
+* You need Rails (recommend version 5.1.5 or newer) and Ruby (recommend version
+  2.4.1 or newer).
+
+* Fork it on GitHub.
+
+![alt title](app/assets/images/forking_screenshot.png)
+
+
+* Run `$ git clone https://github.com/YOUR-USERNAME/Take-Home-Pay` to clone your forked repo onto your computer.
+
+* Run `$ bundle install` to install all necessary gems.
+
+## Submitting Pull Requests
+work on it and then push your changes to
+your remote forked repo and then use a pull request to submit your proposed
+changes to the original repo.
+
+
 
 * Database creation
+PostgreSQL
 
 * Database initialization
 
@@ -20,5 +35,9 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
+Heroku
 
-* ...
+* Updating tax tables
+
+* License
+MIT
