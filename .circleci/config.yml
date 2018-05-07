@@ -8,13 +8,21 @@ jobs:
     docker:
       # specify the version you desire here
        - image: circleci/ruby:2.4.1-node-browsers
+       environment:
+          PGHOST: 127.0.0.1
+          PGUSER: TakeHomePay-test
+          RAILS_ENV: test
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       - image: circleci/postgres:10.3
+      environment:
+        POSTGRES_USER: TakeHomePay
+        POSTGRES_DB: TakeHomePay-test
+        POSTGRES_PASSWORD: ""
 
-    working_directory: ~/app
+    working_directory: ~/TakeHomePay
 
     steps:
       - checkout
