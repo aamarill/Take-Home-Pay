@@ -15,7 +15,7 @@ jobs:
         environment:
           POSTGRES_USER: root
           POSTGRES_DB: TakeHomePay_test
-          POSTGRES_PASSWORD: ""
+          POSTGRES_PASSWORD: circleci_test
 
     working_directory: ~/repo
 
