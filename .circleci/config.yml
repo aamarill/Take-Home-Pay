@@ -9,7 +9,6 @@ jobs:
       - image: circleci/ruby:2.3-node
         environment:
           PGHOST: 127.0.0.1
-          PGUSER: TakeHomeTest
           RAILS_ENV: test
       - image: circleci/postgres:9.5-alpine
         environment:
