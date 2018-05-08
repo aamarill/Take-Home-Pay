@@ -1,4 +1,6 @@
 # Take-Home Pay Calculator
+[![CircleCI:](https://circleci.com/gh/aamarill/Take-Home-Pay.svg?style=svg)](https://circleci.com/gh/aamarill/Take-Home-Pay)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A calculator for US federal employees to calculate their take-home pay.
 
