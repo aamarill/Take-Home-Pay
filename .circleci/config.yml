@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/appName
+    working_directory: ~/TakeHomePay
     docker:
       - image: ruby:2.3.1
         environment:
