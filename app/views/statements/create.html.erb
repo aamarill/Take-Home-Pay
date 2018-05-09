@@ -1,0 +1,23 @@
+<!--
+  This view is only needed to prevent tests from failing. The #create action
+  test of the "statements_controller" will fail without this view. With and
+  without this view, the application seems to run without any issues.
+
+  Error when running "rspec spec/controllers/statements_controller_spec.rb "
+
+  "
+    1) StatementsController POST #create returns http success
+       Failure/Error: post :create, params: {user_id: user, statement: statement_attributes }
+
+       ActionController::UnknownFormat:
+         StatementsController#create is missing a template for this request format and variant.
+
+         request.formats: ["text/html"]
+         request.variant: []
+   "
+   My hypothesis is that you need to let the test know to not look for a view
+   but instead send look for the file "create.js.erb" instead. This is because
+   "create" gets triggered from the from in the "new" view using AJAX. So,
+   further research is needed to make the test more accurate and delete this
+   otherwise useless view.
+ -->
