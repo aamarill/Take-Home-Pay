@@ -27,6 +27,11 @@ Install all necessary gems.
 $ bundle install
 ```
 
+Verify the project runs correctly
+```shell
+$ rails s
+```
+
 After taking all of those steps, you are ready to modify your own copy of the
 repo.
 
