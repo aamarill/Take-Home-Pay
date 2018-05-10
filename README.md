@@ -20,13 +20,13 @@ $ git clone https://github.com/YOUR-USERNAME/Take-Home-Pay
 ```
 
 Install postgreSQL (if not installed already)
-```
-brew install postgresql
+```shell
+$ brew install postgresql
 ```
 
 If you just installed postgreSQL run the following to avoid any issues during installation.
-```
-brew services restart postgresql
+```shell
+$ brew services restart postgresql
 ```
 
 Please go ahead and close and re-open your terminal.
@@ -37,6 +37,11 @@ $ bundle install
 ```
 
 Navigate to the directory that you cloned in the previous step.
+
+Initialize your database
+```shell
+$ rails db:setup
+```
 
 Start a local server
 ```shell
