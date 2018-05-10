@@ -8,7 +8,7 @@ https://take-home-pay.herokuapp.com/
 
 
 ## Installation and configuration
-You'll need Rails (recommend version 5.1.5 or newer), Ruby (recommend version
+You'll need Rails (recommend version 5.1.5 or newer) and Ruby (recommend version
   2.4.1 or newer).
 
 Fork the [original project](https://github.com/aamarill/Take-Home-Pay) on GitHub.
