@@ -4,7 +4,7 @@ class StatementsController < ApplicationController
 
   def index
     verify_user(params)
-    @statements = current_user.statements
+    @statements = current_user.statements.order(created_at: :desc)
   end
 
   def new
